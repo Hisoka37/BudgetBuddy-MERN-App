@@ -4,15 +4,15 @@ import bcrypt from 'bcryptjs'
 
 const userResolver = {
     Mutation: {
-        singUp: async(_, { input }, context) => {
+        singUp: async (_, { input }, context) => {
             try {
-                const {useranme, name, password, gender} = input
+                const { useranme, name, password, gender } = input
 
-                if(!useranme, !name, !password, !gender) {
+                if (!useranme, !name, !password, !gender) {
                     throw new Error('All fields are required')
                 }
-                const existingUser = await User.findOne( {username} )
-                if(existingUser) {
+                const existingUser = await User.findOne({ username })
+                if (existingUser) {
                     throw new Error("User already exist")
                 }
 
@@ -25,7 +25,7 @@ const userResolver = {
                 const newUser = new User({
                     username,
                     name,
-                    password:hashedPass,
+                    password: hashedPass,
                     gender,
                     profilePicture: gender === "male" ? maleProfile : femaleProfile
                 })
@@ -38,10 +38,10 @@ const userResolver = {
                 throw new Error(error.message || "Internal Server Error")
             }
         },
-        login: async(_, input, context) => {
+        login: async (_, input, context) => {
             try {
-                const { username, password} = input
-                const { user } = await context.authenticate("graphql-local", {username, password})
+                const { username, password } = input
+                const { user } = await context.authenticate("graphql-local", { username, password })
                 await context.login(user)
                 return user
             } catch (error) {
@@ -49,29 +49,41 @@ const userResolver = {
                 throw new Error(error.message || "Internal Server Error")
             }
         },
-        logout: async(_,_,context) => {
-                try {
-                    await context.logout();
-                    req.session.destroy((err) => {
-                        if (err) throw err
-                    })
+        logout: async (_, _, context) => {
+            try {
+                await context.logout();
+                req.session.destroy((err) => {
+                    if (err) throw err
+                })
 
-                    res.clearCookie("connect.sid");
-                    return { message: "Logged Out Successfully"}
-                    
-                } catch (error) {
-                    console.error("Error in logout: ", error)
-                    throw new Error(error.message || "Internal Server Error")
-                }
+                res.clearCookie("connect.sid");
+                return { message: "Logged Out Successfully" }
+
+            } catch (error) {
+                console.error("Error in logout: ", error)
+                throw new Error(error.message || "Internal Server Error")
+            }
         }
     },
     Query: {
-        users: () => {
-            return users
+        authUser: async (_, _, context) => {
+            try {
+                const user = await context.getUser();
+                return user;
+                console.error("Error in authUser: ", error)
+            } catch (error) {
+                throw new Error(error.message || "Internal Server Error")
+            }
         },
 
-        user: (_, { userId }) => {
-            return users.find((user) => user._id === userId)
+        user: async (_, { userId }) => {
+            try {
+                const user = await User.findById(userId)
+                return user;
+            } catch (error) {
+                console.error("Error in user query: ", error)
+                throw new Error(error.message || "Internal Server Error")
+            }
         }
     },
     Mutation: {}
