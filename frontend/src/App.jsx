@@ -10,7 +10,7 @@ function App() {
 const authUser = true
   return (
     <>
-    {authUser &&  <Header/>}
+    {!authUser &&  <Header/>}
     <Routes>
         <Route path='/' element={<HomePage />} />
 				<Route path='/login' element={<LoginPage />} />
