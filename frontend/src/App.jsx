@@ -1,10 +1,23 @@
-import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import HomePage from './pages/HomePage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
+import SignUpPage from './pages/SignUpPage.jsx'
+import TransactionPage from './pages/TransactionPage.jsx'
+import Header from "./pages/Header.jsx"
 
 function App() {
-
+const authUser = true
   return (
     <>
-    <h1>Test</h1>
+    {authUser &&  <Header/>}
+    <Routes>
+        <Route path='/' element={<HomePage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/signup' element={<SignUpPage />} />
+				<Route path='/transaction/:id' element={<TransactionPage />} />
+				<Route path='*' element={<NotFoundPage />} />
+    </Routes>
     </>
   )
 }

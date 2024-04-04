@@ -12,6 +12,9 @@
   "dependencies": {
     "@apollo/client": "^3.9.10",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tsparticles/engine": "^3.3.0",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.3.0",
     "chart.js": "^4.4.2",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.24",
