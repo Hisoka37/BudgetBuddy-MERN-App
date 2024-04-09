@@ -8,7 +8,7 @@ const userResolver = {
             try {
                 const { useranme, name, password, gender } = input
 
-                if (!useranme, !name, !password, !gender) {
+                if (!useranme || !name ||  !password || !gender) {
                     throw new Error('All fields are required')
                 }
                 const existingUser = await User.findOne({ username })

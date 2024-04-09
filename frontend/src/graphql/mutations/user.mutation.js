@@ -1,13 +1,11 @@
 import { gql } from '@apollo/client';
 
-export const GET_AUTH_USER = gql`
-  query GetAuthUser {
-    authUser {
-      _id
-      username
-      name
-      profilePicture
+export const SIGN_UP = gql`
+    mutation SignUp($input: SignUpInput!) {
+        signUp(input: $input) {
+            _id
+            name
+            username
+        }
     }
-  }
-`;
-
+`

@@ -50,11 +50,12 @@ const server = new ApolloServer({
   resolvers: mergedResolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 })
+
 await server.start();
 
 
 app.use(
-  '/grapql',
+  '/graphql',
   cors({
     origin: "http://localhost:3000",
     credentials: true,
