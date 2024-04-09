@@ -13,13 +13,11 @@ const HomePage = () => {
 		labels: ["Saving", "Expense", "Investment"],
 		datasets: [
 			{
-				label: "%",
+				label: "$",
 				data: [13, 8, 3],
-				backgroundColor: ["rgb(74 222 128", "rgb(219 39 119)", "rgb(96 165 250)"],
-				borderColor: ["rgba(75, 192, 192)", "rgba(255, 99, 132)", "rgba(54, 162, 235, 1)"],
-				borderWidth: 1,
-				borderRadius: 30,
-				spacing: 10,
+				backgroundColor: ["rgb(74 222 128)", "rgb(219 39 119)", "rgb(96 165 250)"],
+				borderColor: ["rgb(74 222 128)", "rgb(219 39 119)", "rgb(96 165 250)"],
+				spacing: 7,
 				cutout: 130,
 			},
 		],
