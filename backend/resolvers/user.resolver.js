@@ -6,7 +6,7 @@ const userResolver = {
     Mutation: {
         singUp: async (_, { input }, context) => {
             try {
-                const { useranme, name, password, gender } = input
+                const { useranme, name, password, gender } = input;
 
                 if (!useranme || !name ||  !password || !gender) {
                     throw new Error('All fields are required')
@@ -70,8 +70,8 @@ const userResolver = {
             try {
                 const user = await context.getUser();
                 return user;
-                console.error("Error in authUser: ", error)
             } catch (error) {
+                console.error("Error in authUser: ", err);
                 throw new Error(error.message || "Internal Server Error")
             }
         },

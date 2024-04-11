@@ -37,7 +37,7 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
     },
-    store:store
+    store: store,
   })
 )
 
@@ -62,10 +62,11 @@ app.use(
   }),
   express.json(),
   expressMiddleware(server, {
-    context: ({ req, res }) => buildContext({ req, res, User })
+    context: ({ req, res }) => buildContext({ req, res })
   }),
 );
 
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
 await connectDB()
+
 console.log(`🚀 Server ready at http://localhost:4000/graphql`);
