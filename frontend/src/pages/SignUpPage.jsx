@@ -14,7 +14,9 @@ const SignUpPage = () => {
 		gender: "",
 	});
 
-	const [signup, {loading, error}] = useMutation(SIGN_UP)
+	const [signup, {loading}] = useMutation(SIGN_UP, {
+		refetchQueries: ["GetAuthUser"],
+	})
 
 	const handleChange = (e) => {
 		const { name, value, type } = e.target;
@@ -40,6 +42,7 @@ const SignUpPage = () => {
 					input: signUpData,
 				}
 			})
+			toast.success('Signed up successfully!');
 		} catch (error) {
 			console.error("Error :", error)
 			toast.error(error.message)

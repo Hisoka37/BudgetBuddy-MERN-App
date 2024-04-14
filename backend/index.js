@@ -34,7 +34,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie:{
-      maxAge: 1000 * 60 * 60 * 24 * 30,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
       httpOnly: true,
     },
     store: store,
@@ -62,7 +62,7 @@ app.use(
   }),
   express.json(),
   expressMiddleware(server, {
-    context: ({ req, res }) => buildContext({ req, res })
+    context: async ({ req, res }) => buildContext({ req, res })
   }),
 );
 
