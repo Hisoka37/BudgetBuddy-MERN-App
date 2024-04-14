@@ -6,7 +6,7 @@ const transactionResolver = {
                 if (!context.getUser()) throw new Error('Unauthorized')
                 const userId = await context.getUser()._id;
 
-                const transactions = await Transaction.find({ user: userId })
+                const transactions = await Transaction.find({ userId })
                 return transactions
             } catch (error) {
                 console.error("Error in transaction query: ", error)
@@ -38,7 +38,7 @@ const transactionResolver = {
                 throw new Error(error.message || "Internal Server Error")
             }
         },
-        UpdateTransaction: async (_, {input}) => {
+        updateTransaction: async (_, {input}) => {
             try {
                 const updateTransaction = await Transaction.findByIdAndUpdate(input.transactionId, input, {new:true})
                 return updateTransaction

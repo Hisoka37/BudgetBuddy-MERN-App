@@ -12,7 +12,7 @@ const categoryColorMap = {
 	investment: "from-blue-700 to-blue-400",
 };
 
-const Card = ({ cardType }) => {
+const Card = ({ transaction }) => {
 	const cardClass = categoryColorMap[cardType];
 
 	return (
