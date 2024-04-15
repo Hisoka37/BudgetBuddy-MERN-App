@@ -37,6 +37,7 @@ const HomePage = () => {
 		try {
 			await logout()
 			toast.success('Logged out successfully');
+			client.resetStore()
 		} catch (error) {
 			console.error("Error logging out:", error)
 			toast.error(error.message)
