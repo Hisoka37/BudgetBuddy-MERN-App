@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
 import { SparklesCore } from "../components/ui/sparkles.jsx";
+import { Link } from "react-router-dom";
+
 
 const  Header = ()  => {
   return (
     <div className="  lg:w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
       <h1 className="md:text-5xl text-3xl lg:text-7xl font-bold text-white relative z-20">
-        Expense Tracker
+        <Link to='/'> Expense Tracker</Link>
       </h1>
       <div className=" w-[20rem] lg:w-[40rem] h-10 relative">
         {/* Gradients */}
