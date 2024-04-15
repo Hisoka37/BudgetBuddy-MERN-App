@@ -46,7 +46,6 @@ const TransactionPage = () => {
       navigate('/');
     } catch (error) {
       toast.error(error.message);
-      console.error(error.message)
     }
   };
 
@@ -68,7 +67,7 @@ const TransactionPage = () => {
         category: data?.transaction?.category,
         amount: data?.transaction?.amount,
         location: data?.transaction?.location,
-        date: new Date(+data.transaction.date).toISOString().substr(0,10)
+        date: new Date(+data?.transaction?.date).toISOString().substr(0,10)
       });
     }
   }, [data]);
