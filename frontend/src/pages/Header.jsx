@@ -18,8 +18,8 @@ const  Header = ()  => {
         {/* Core component */}
         <SparklesCore
           background="transparent"
-          minSize={0.3}
-          maxSize={1}
+          minSize={0.4}
+          maxSize={2}
           particleDensity={2000}
           className="w-full h-full"
           particleColor="#FFFFFF"
