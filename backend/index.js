@@ -34,10 +34,10 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie:{
-      maxAge: 1000 * 60 * 60 * 24 * 30,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
       httpOnly: true,
     },
-    store:store
+    store: store,
   })
 )
 
@@ -50,21 +50,23 @@ const server = new ApolloServer({
   resolvers: mergedResolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 })
+
 await server.start();
 
 
 app.use(
-  '/',
+  '/graphql',
   cors({
     origin: "http://localhost:3000",
     credentials: true,
   }),
   express.json(),
   expressMiddleware(server, {
-    context: ({ req, res }) => buildContext({ req, res, User })
+    context: async ({ req, res }) => buildContext({ req, res })
   }),
 );
 
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
 await connectDB()
-console.log(`🚀 Server ready at http://localhost:4000/`);
+
+console.log(`🚀 Server ready at http://localhost:4000/graphql`);

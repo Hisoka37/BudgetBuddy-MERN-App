@@ -1,19 +1,19 @@
-import { users } from '../data/data.js'
 import User from '../models/user.model.js'
+import Transaction from '../models/transaction.model.js'
 import bcrypt from 'bcryptjs'
 
 const userResolver = {
     Mutation: {
-        singUp: async (_, { input }, context) => {
+        signUp: async (_, { input }, context) => {
             try {
-                const { useranme, name, password, gender } = input
+                const { username, name, password, gender } = input;
 
-                if (!useranme, !name, !password, !gender) {
+                if (!username || !name ||  !password || !gender) {
                     throw new Error('All fields are required')
                 }
                 const existingUser = await User.findOne({ username })
                 if (existingUser) {
-                    throw new Error("User already exist")
+                    throw new Error("Username already exist")
                 }
 
                 const salt = await bcrypt.genSalt(10)
@@ -27,9 +27,8 @@ const userResolver = {
                     name,
                     password: hashedPass,
                     gender,
-                    profilePicture: gender === "male" ? maleProfile : femaleProfile
+                    profilePicture: gender === "male" ? maleProfile : femaleProfile,
                 })
-
                 await newUser.save();
                 await context.login(newUser)
                 return newUser;
@@ -38,9 +37,12 @@ const userResolver = {
                 throw new Error(error.message || "Internal Server Error")
             }
         },
-        login: async (_, input, context) => {
+        login: async (_, {input}, context) => {
             try {
                 const { username, password } = input
+                if (!username  || !password) {
+                    throw new Error("Please fill in all fields ")
+                }
                 const { user } = await context.authenticate("graphql-local", { username, password })
                 await context.login(user)
                 return user
@@ -49,14 +51,14 @@ const userResolver = {
                 throw new Error(error.message || "Internal Server Error")
             }
         },
-        logout: async (_, _, context) => {
+        logout: async (_, __,context) => {
             try {
                 await context.logout();
-                req.session.destroy((err) => {
+                context.req.session.destroy((err) => {
                     if (err) throw err
                 })
 
-                res.clearCookie("connect.sid");
+                context.res.clearCookie("connect.sid");
                 return { message: "Logged Out Successfully" }
 
             } catch (error) {
@@ -66,12 +68,12 @@ const userResolver = {
         }
     },
     Query: {
-        authUser: async (_, _, context) => {
+        authUser: async (_, __, context) => {
             try {
                 const user = await context.getUser();
                 return user;
-                console.error("Error in authUser: ", error)
             } catch (error) {
+                console.error("Error in authUser: ", err);
                 throw new Error(error.message || "Internal Server Error")
             }
         },
@@ -86,7 +88,16 @@ const userResolver = {
             }
         }
     },
-    Mutation: {}
+    User: {
+        transactions: async (parent) => {
+            try {
+                const transactions = await Transaction.find({userId: parent._id})
+                return transactions;
+            } catch (error) {
+                console.log("Error in user transaction resolver:" , error)
+            }
+        }
+    }
 };
 
 
