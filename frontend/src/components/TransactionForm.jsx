@@ -166,7 +166,7 @@ const TransactionForm = () => {
 			{/* SUBMIT BUTTON */}
 			<button
 				className='text-white font-bold w-full rounded px-4 py-2 bg-gradient-to-br
-          from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600
+          from-rose-600 to-rose-600 hover:from-rose-800 hover:to-rose-800
 						disabled:opacity-70 disabled:cursor-not-allowed'
 				type='submit'
 				disabled={loading}

@@ -58,11 +58,11 @@ const HomePage = () => {
 
 			categories.forEach((category) => {
 				if (category === "saving") {
-					backgroundColors.push("rgb(74 222 128)");
-					borderColors.push("rgb(74 222 128)");
+					backgroundColors.push("rgb(46,196,182)");
+					borderColors.push("rgb(46,196,182)");
 				} else if (category === "expense") {
-					backgroundColors.push("rgb(219 39 119)");
-					borderColors.push("rgb(219 39 119)");
+					backgroundColors.push("rgb(231,29,54)");
+					borderColors.push("rgb(231,29,54)");
 				} else if (category === "investment") {
 					backgroundColors.push("rgb(96 165 250)");
 					borderColors.push("rgb(96 165 250)");
@@ -98,8 +98,8 @@ const HomePage = () => {
 		<>
 			<div className='flex flex-col gap-6 items-center max-w-7xl mx-auto z-20 relative justify-center'>
 				<div className='flex items-center'>
-					<p className='md:text-4xl text-2xl lg:text-4xl font-bold text-center relative z-50 mb-4 mr-4 bg-gradient-to-r from-pink-600 via-indigo-500 to-pink-400 inline-block text-transparent bg-clip-text'>
-						Spend wisely, track wisely
+					<p className='md:text-4xl text-2xl lg:text-4xl font-bold text-center relative z-50 mb-4 mr-4 bg-gradient-to-r from-rose-600 via-indigo-500 to-rose-500 inline-block text-transparent bg-clip-text'>
+					Your financial compass in a chaotic world
 					</p>
 					<img
 						src={authUserData?.authUser?.profilePicture}
