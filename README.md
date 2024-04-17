@@ -1,9 +1,8 @@
-# BudgetBuddy
 
 <details>
 <summary>📗Table of Contents</summary>
   
-- [🤖 DevConnect](#about-project)
+- [💸 DevConnect](#about-project)
   - [🛠 Built With](#built-with)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
@@ -17,7 +16,7 @@
 - [📝 License](#license)
 </details>
 
-# 🤖 BudgetBuddy <a name="about-project"></a>
+# 💸 BudgetBuddy <a name="about-project"></a>
 
 **BudgetBuddy** is a full-stack web application designed to help users manage their finances effectively. With Budget Buddy, users can track their expenses, set budgets, and visualize their spending habits to achieve financial goals.
 
@@ -52,6 +51,7 @@
 
 ### Prerequisites
 In order to run this project, you need the following installed:
+
 - A browser
 - Node.js
 - npm
@@ -67,8 +67,11 @@ git clone https://github.com/Hisoka37/BudgetBuddy-MERN-App.git
 
 Install project dependencies:
 
-`cd 'filename'
-npm install`
+```
+cd 'filename'
+npm install
+
+```
 
 ### Setup .env file
 
@@ -84,7 +87,7 @@ SECRET_KEY=your_secret_key
 
 👤 **Walid Kabboussa**
 - GitHub: [@Hisoka37](https://github.com/Hisoka37)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/walidkb/)
+- LinkedIn [LinkedIn](https://www.linkedin.com/in/walidkb/)
 - Twitter: [Twitter](https://twitter.com/kbwalid9)
 
 🤝 Contributing <a name="contributing"></a>
